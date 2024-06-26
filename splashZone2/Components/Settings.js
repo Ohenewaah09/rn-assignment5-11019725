@@ -1,47 +1,50 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, Switch, useColorScheme } from "react-native";
 import Footer from "./Footer";
+import { useTheme } from './ThemeContext';
 
 
 
 export default function Settings(){
+    const {theme, toggleTheme} = useTheme();
     return(
-        <View style={styles.Container}>
+        <View style={[styles.Container, {backgroundColor: theme.background}]}>
             <View style={styles.header}>
-            <Text style={styles.headerText}>Settings</Text>
+            <Text style={[styles.headerText, {color: theme.text}]}>Settings</Text>
             </View>
 
             <View style={styles.settingsContainer}>
                 <View style={styles.settingsList}>
                 <View style={styles.settingsItem}>
-                    <Text style={styles.settingsSubItem}>Language</Text>
+                    <Text style={[styles.settingsSubItem, {color: theme.text} ]}>Language</Text>
                    <Image source={require('../assets/icons8-greater-than-48.png')} style={styles.settingsSign}/>
                 </View>
 
                 <View style={styles.settingsItem}>
-                    <Text style={styles.settingsSubItem}>My Profile</Text>
+                    <Text style={[styles.settingsSubItem, {color: theme.text}]}>My Profile</Text>
                     <Image source={require('../assets/icons8-greater-than-48.png')} style={styles.settingsSign}/>
                 </View>
 
                 <View style={styles.settingsItem}>
-                    <Text style={styles.settingsSubItem}>Contact Us</Text>
+                    <Text style={[styles.settingsSubItem, {color: theme.text}]}>Contact Us</Text>
                     <Image source={require('../assets/icons8-greater-than-48.png')} style={styles.settingsSign}/>
                 </View>
 
                 <View style={styles.settingsItem}>
-                    <Text style={styles.settingsSubItem}>Change Password</Text>
+                    <Text style={[styles.settingsSubItem, {color: theme.text}]}>Change Password</Text>
                     <Image source={require('../assets/icons8-greater-than-48.png')} style={styles.settingsSign}/>
                 </View>
 
                 <View style={styles.settingsItem}>
-                    <Text style={styles.settingsSubItem}>Privacy Policy</Text>
+                    <Text style={[styles.settingsSubItem, {color: theme.text}]}>Privacy Policy</Text>
                      <Image source={require('../assets/icons8-greater-than-48.png')} style={styles.settingsSign}/>
                 </View>
 
                 </View>
                 <View>
-                <Text style={styles.Theme}>Theme</Text>
+                <Text style={[styles.Theme, {color: theme.text}]}>Theme</Text>
+                <Switch value={theme =='dark'} onChange={toggleTheme} />
                 </View>
 
             </View>

@@ -14,24 +14,24 @@ export default function MastercardUI() {
         </View>
 
         <View>
-          <Text style={styles.CardNumber}>4562 1122 4595 7852</Text>
-          <Text style={styles.CardName}>AR Johnson</Text>
+          <Text style={styles.CardNumber}>4562   1122   4595   7852</Text>
+          <Text style={styles.CardName}>AR Jonson</Text>
         </View>
         
         <View style={styles.TextContainer}>
           <View>
-            <Text>Expiry Date</Text>
-            <Text>24/2000</Text>
+            <Text style={styles.TextDate}>Expiry Date</Text>
+            <Text style={styles.Text}>24/2000</Text>
           </View>
 
           <View style={styles.cardID}>
-            <Text>CVV</Text>
-            <Text>6986</Text>
+            <Text style={styles.TextDate}>CVV</Text>
+            <Text style={styles.Text}>6986</Text>
           </View>
 
           <View style={styles.Logo}>
             <Image source={require('../assets/mastercard_logo.png')} style={styles.cardLogo}/>
-            <Text>MasterCard</Text>
+            <Text style={styles.Text}>MasterCard</Text>
           </View>
         </View>
 
@@ -43,19 +43,17 @@ export default function MastercardUI() {
 
 const styles = StyleSheet.create({
   container: {
-    width:'100%',
+    width: 350,
     left: 45,
-    
     backgroundColor: '#fff',
     marginTop:20,
-     
     // alignItems:'center',
     // justifyContent:'center'
   },
   masterCard_Container:{
-    right:30,
-    marginRight:30,
-    backgroundColor:'#164966',
+    right:45,
+    left:-30,
+    backgroundColor:'#25253d',
     padding:10,
     borderRadius:20
   },
@@ -88,12 +86,18 @@ const styles = StyleSheet.create({
   },
   TextContainer:{
     marginTop:10,
-    flexDirection:'row'
+    flexDirection:'row',
   },
   cardID:{
     left:30
   },
   Logo:{
     left:130
+  },
+  Text:{
+    color:'#fff'
+  },
+  TextDate:{
+    color: 'gray'
   }
 });

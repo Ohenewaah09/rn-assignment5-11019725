@@ -1,171 +1,143 @@
-import React, {useState} from 'react';
-import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import MastercardUI from './MastercardUI';
 import TransactionList from './TransactionList';
 import Footer from './Footer';
+import { useTheme } from './ThemeContext';
 
 export default function Home() {
-  const [name, setName] = useState('Ohenewaah Edinam')
+  const { theme } = useTheme();
+  const [name, setName] = useState('Ohenewaah Edinam');
+
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.HomeContainer}>
-        <View style={styles.profileContainer}>
-        <View style={styles.ProfileInfo}>
-          <Image source={require('../assets/profile.jpeg')} style={styles.profileImage}/>
-            <View>
-            <Text style={styles.WelcomeInfo
-            }>Welcome back,</Text>
-            <Text style={styles.WelcomeName}>{name}</Text>
-            </View>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <View style={styles.profileContainer}>
+        <Image source={require('../assets/profile.jpeg')} style={styles.profileImage} />
+        <View>
+          <Text style={styles.WelcomeInfo}>Welcome back,</Text>
+          <Text style={[styles.WelcomeName, { color: theme.text }]}>{name}</Text>
         </View>
-
         <View style={styles.imageContainer2}>
-        <Image source={require('../assets/search.png')} style={styles.searchImage}/>
+          <Image source={require('../assets/search.png')} style={styles.searchImage} />
         </View>
-     </View>
-     <View>
-      <MastercardUI/>
-     </View>
+      </View>
 
-     <View style={styles.TransationOptions}>
-            <View>
-              <View style={styles.imageContainer}>
-              <Image source={require('../assets/icons8-arrow-up-50.png')} style={styles.TransationImage}/>
-              </View>
-              <Text>Sent</Text>
-            </View>
+      <MastercardUI />
 
-            <View>
-            <View style={styles.imageContainer}>
-            <Image source={require('../assets/icons8-arrow-down-50.png')} style={styles.TransationImage}/>
-            </View>         
-            <Text>Recieve</Text>
-            </View>
+      <View style={styles.TransationOptions}>
+        <View>
+          <View style={styles.imageContainer}>
+            <Image source={require('../assets/icons8-arrow-up-50.png')} style={styles.TransationImage} />
+          </View>
+          <Text style={[styles.Action, { color: theme.text }]}>Sent</Text>
+        </View>
 
-            <View>
-            <View style={styles.imageContainer}>
-            <Image source={require('../assets/icons8-coin-50.png')} style={styles.TransationImage}/></View>           
-            <Text>Loan</Text>
-            </View>
+        <View>
+          <View style={styles.imageContainer}>
+            <Image source={require('../assets/icons8-arrow-down-50.png')} style={styles.TransationImage} />
+          </View>
+          <Text style={[styles.Action, { color: theme.text }]}>Receive</Text>
+        </View>
 
-            <View>
-            <View style={styles.imageContainer}>
-            <Image source={require('../assets/icons8-upload-to-cloud-50.png')} style={styles.TransationImage}/>
-            </View>
-            <Text>Topup</Text>
-            </View>
-     </View>
-      
+        <View>
+          <View style={styles.imageContainer}>
+            <Image source={require('../assets/icons8-coin-50.png')} style={styles.TransationImage} />
+          </View>
+          <Text style={[styles.Action, { color: theme.text }]}>Loan</Text>
+        </View>
+
+        <View>
+          <View style={styles.imageContainer}>
+            <Image source={require('../assets/icons8-upload-to-cloud-50.png')} style={styles.TransationImage} />
+          </View>
+          <Text style={[styles.Action, { color: theme.text }]}>Topup</Text>
+        </View>
+      </View>
+
       <View style={styles.TransationView}>
-        <Text style={styles.TransationView1}>Transaction</Text>
+        <Text style={[styles.TransationView1, { color: theme.text }]}>Transaction</Text>
         <Text style={styles.TransationView2}>Sell All</Text>
       </View>
 
-      <TransactionList/>
-      
-        </View>
-     
-      </ScrollView>
-      <Footer/>
-      
+      <TransactionList />
 
-      <StatusBar style="auto" />
+      <Footer />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#fff',
-// alignItems: 'center',
-// justifyContent: 'center',
   },
-  HomeContainer:{
-    marginTop:60
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 50,
+    paddingHorizontal: 20,
   },
-  profileContainer:{
-    marginTop:50
+  profileImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
-  profileImage:{
-    width:50,
-    height:50,
-    left:-20,
-    borderRadius: 25
-  },
-  searchImage:{
-    width:20,
-    height:20,
-    
+  searchImage: {
+    width: 20,
+    height: 20,
   },
   imageContainer2: {
-    width: 50,  
-    height: 50, 
-    borderRadius: 25, 
-    backgroundColor: 'gray',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#f6f6f6',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 60,
   },
-  ProfileInfo:{
-    flexDirection:'row',
-    left: 40
+  WelcomeInfo: {
+    fontSize: 20,
+    color: '#BEBEBE',
+    fontWeight: '400',
   },
-  profileContainer:{
-    flexDirection:'row',
-   
+  WelcomeName: {
+    fontSize: 22,
+    fontWeight: '500',
   },
-  WelcomeInfo:{
-    fontSize:20,
-    color: '#A9A9A9',
-    fontWeight:'400'
+  TransationOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginTop: 25,
+    marginBottom: 20,
   },
-  WelcomeName:{
-    fontSize:22,
-    fontWeight:'500'
-  },
-  TransationOptions:{
-    marginTop:25,
-    flexDirection:'row',
-    justifyContent:'space-evenly',
-    marginBottom:20,
-  },
-
   imageContainer: {
-    width: 60,  
-    height: 60, 
-    borderRadius: 30, 
-    backgroundColor: 'gray',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#f6f6f6',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
   },
-  TransationImage:{
-    width:35,
-    height:30,
-    marginHorizontal:5,
-   
+  TransationImage: {
+    width: 35,
+    height: 30,
   },
-  TransationView:{
-    marginTop:'45',
-    flexDirection:'row',
-    justifyContent:'space-between',
-    marginLeft:30,
-    marginRight:30
+  TransationView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 30,
+    marginTop: 45,
   },
-  TransationView1:{
-    fontSize:25,
-    fontWeight:'500'
+  TransationView1: {
+    fontSize: 25,
+    fontWeight: '500',
   },
-  TransationView2:{
-    fontSize:18,
-    color:'#007BFF',
-    fontWeight:'500'
+  TransationView2: {
+    fontSize: 18,
+    color: '#007BFF',
+    fontWeight: '500',
   },
-  footerImage:{
-    width:20,
-    height:20
-  }
+  Action: {
+    fontWeight: '500',
+  },
 });

@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
+import { useTheme } from './ThemeContext';
 
 
 const data=[
@@ -11,19 +12,22 @@ const data=[
 ];
 
 const List = ({title, company,amount, image }) =>{
+  const {theme} = useTheme();
+  const amountStyle = amount.startsWith('$') ? styles.positiveAmount : styles.negativeAmount;
+
   return(
-    <View style={styles.ListContainer}>
+    <View style={[styles.ListContainer, {backgroundColor:theme.background}]}>
     <View style={styles.Transactions}>
-      <View style={styles.imageContainer}>
+      <View style={[styles.imageContainer, {backgroundColor: theme.container}]}>
       <Image source={image} style={styles.transactionImage}/>
       </View>
       
       <View>
-        <Text style={styles.titleStyle}>{title}</Text>
+        <Text style={[styles.titleStyle, {color: theme.text}]}>{title}</Text>
         <Text style={styles.companyStyle}>{company}</Text>
       </View>
       <View>
-        <Text style={styles.amountStyle}>{amount}</Text>
+      <Text style={[amountStyle, {color: theme.text}]}>{amount}</Text>
       </View>
     </View>
   </View>
@@ -32,8 +36,9 @@ const List = ({title, company,amount, image }) =>{
 };
 
 export default function TransactionList() {
+  const {theme} = useTheme();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,  {backgroundColor:theme.background}]}>
       <FlatList
         data={data}
         renderItem={( {item} ) => (
@@ -47,7 +52,6 @@ export default function TransactionList() {
         keyExtractor={item => item.id}
         contentContainerStyle={styles.flatListContainer}
       />
-        
       <StatusBar style="auto" />
     </View>
   );
@@ -68,7 +72,7 @@ imageContainer: {
   width: 60,  
   height: 60, 
   borderRadius: 30, 
-  backgroundColor: 'gray',
+  backgroundColor: '#f6f6f6',
   justifyContent: 'center',
   alignItems: 'center',
   marginRight: 10,
@@ -85,23 +89,30 @@ Transactions:{
   marginBottom: 10,
   paddingVertical: 10,
   paddingHorizontal: 15,
-  backgroundColor: '#f9f9f9',
+ 
   borderRadius: 8,
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 1 },
-  shadowOpacity: 0.1,
-  shadowRadius: 1,
-  elevation: 2,
 },
 listContainer: {
   marginBottom: 10, 
 },
 
 titleStyle:{
-  fontSize:24
+  fontSize:24,
+  fontWeight:'500'
 },
 amountStyle:{
   left: 0,
-  marginLeft:50
-}
+  marginLeft:50,
+  fontSize: 20
+},
+companyStyle:{
+  color:'#BEBEBE'
+},
+positiveAmount: {
+  color: '#007BFF',
+},
+negativeAmount: {
+  color: 'black',
+},
+
 });

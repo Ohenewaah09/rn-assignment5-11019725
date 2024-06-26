@@ -2,39 +2,41 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from './ThemeContext';
 
 export default function Footer() {
-  const navigation = useNavigation();
+  const {theme} = useTheme();
 
+  const navigation = useNavigation();
   const handleNavigation = (route) => {
     navigation.navigate(route);
   };
 
   return (
-    <View style={styles.Container}>
+    <View style={[styles.Container, {backgroundColor: theme.background}]}>
       <View style={styles.footerContainer}>
         <TouchableOpacity onPress={() => handleNavigation('Home')}>
           <View style={styles.footerItem}>
             <Image source={require('../assets/icons8-home-24.png')} style={styles.footerImage} />
-            <Text>Home</Text>
+            <Text style={styles.footerTabs}>Home</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigation('MyCard')}>
           <View style={styles.footerItem}>
             <Image source={require('../assets/icons8-wallet-32.png')} style={styles.footerImage} />
-            <Text>My card</Text>
+            <Text style={styles.footerTabs}>My card</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigation('Statistics')}>
           <View style={styles.footerItem}>
             <Image source={require('../assets/icons8-pie-chart-48.png')} style={styles.footerImage} />
-            <Text>Statistics</Text>
+            <Text style={styles.footerTabs}>Statistics</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigation('Settings')}>
           <View style={styles.footerItem}>
             <Image source={require('../assets/icons8-settings-50.png')} style={styles.footerImage} />
-            <Text>Settings</Text>
+            <Text style={styles.footerTabs}>Settings</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -64,5 +66,9 @@ const styles = StyleSheet.create({
   },
   footerItem: {
     alignItems: 'center',
+    
   },
+  footerTabs:{
+    color:'#b0afad'
+  }
 });
