@@ -9,6 +9,7 @@
 - Changed directory to app (cd splashZone2)
 - Start the app using "npm run start"
 - Create a component folder where all the .js file would be kept.
+- Images to be used were kept in the assets folder.
 - export the .js files to where they are required.
 - The .js files created was
   - Home.js
