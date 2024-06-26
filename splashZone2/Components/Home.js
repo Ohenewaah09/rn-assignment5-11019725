@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import MastercardUI from './MastercardUI';
 import TransactionList from './TransactionList';
 import Footer from './Footer';
 import { useTheme } from './ThemeContext';
@@ -11,6 +10,7 @@ export default function Home() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <ScrollView>
       <View style={styles.profileContainer}>
         <Image source={require('../assets/profile.jpeg')} style={styles.profileImage} />
         <View>
@@ -22,7 +22,7 @@ export default function Home() {
         </View>
       </View>
 
-      <MastercardUI />
+      <Image source={require('../assets/Card.png')} style={styles.cardImage} />
 
       <View style={styles.TransationOptions}>
         <View>
@@ -60,7 +60,7 @@ export default function Home() {
       </View>
 
       <TransactionList />
-
+      </ScrollView>
       <Footer />
     </View>
   );
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
   TransationOptions: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginTop: 25,
-    marginBottom: 20,
+    marginTop: 10,
+    
   },
   imageContainer: {
     width: 60,
@@ -139,5 +139,11 @@ const styles = StyleSheet.create({
   },
   Action: {
     fontWeight: '500',
+    left:10
   },
+  cardImage:{
+    marginTop:20,
+    left:30,
+    
+  }
 });

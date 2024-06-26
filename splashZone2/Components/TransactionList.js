@@ -13,7 +13,7 @@ const data=[
 
 const List = ({title, company,amount, image }) =>{
   const {theme} = useTheme();
-  const amountStyle = amount.startsWith('$') ? styles.positiveAmount : styles.negativeAmount;
+  const amountStyle = amount.startsWith('-') ? [styles.amountStyle, { color: theme.text }] : [styles.amountStyle, styles.positiveAmount];
 
   return(
     <View style={[styles.ListContainer, {backgroundColor:theme.background}]}>
@@ -27,7 +27,7 @@ const List = ({title, company,amount, image }) =>{
         <Text style={styles.companyStyle}>{company}</Text>
       </View>
       <View>
-      <Text style={[amountStyle, {color: theme.text}]}>{amount}</Text>
+      <Text style={amountStyle}>{amount}</Text>
       </View>
     </View>
   </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     
   },
   flatListContainer: {
-    padding: 16,
+    padding: 14,
 },
 
 imageContainer: {
@@ -89,7 +89,6 @@ Transactions:{
   marginBottom: 10,
   paddingVertical: 10,
   paddingHorizontal: 15,
- 
   borderRadius: 8,
 },
 listContainer: {
@@ -103,7 +102,8 @@ titleStyle:{
 amountStyle:{
   left: 0,
   marginLeft:50,
-  fontSize: 20
+  fontSize: 20,
+  fontWeight:'500'
 },
 companyStyle:{
   color:'#BEBEBE'

@@ -17,25 +17,27 @@ export default function Footer() {
       <View style={styles.footerContainer}>
         <TouchableOpacity onPress={() => handleNavigation('Home')}>
           <View style={styles.footerItem}>
-            <Image source={require('../assets/icons8-home-24.png')} style={styles.footerImage} />
+           <Image source={require('../assets/icons8-home-24.png')} style={styles.footerImage} /> 
+            {/* <Image source={require('../assets/home.png')}  /> */}
             <Text style={styles.footerTabs}>Home</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigation('MyCard')}>
           <View style={styles.footerItem}>
-            <Image source={require('../assets/icons8-wallet-32.png')} style={styles.footerImage} />
+            <Image source={require('../assets/myCards.png')}  />
             <Text style={styles.footerTabs}>My card</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigation('Statistics')}>
           <View style={styles.footerItem}>
-            <Image source={require('../assets/icons8-pie-chart-48.png')} style={styles.footerImage} />
+            <Image source={require('../assets/statictics.png')}  />
             <Text style={styles.footerTabs}>Statistics</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigation('Settings')}>
           <View style={styles.footerItem}>
-            <Image source={require('../assets/icons8-settings-50.png')} style={styles.footerImage} />
+          {/* <Image source={require('../assets/icons8-settings-50.png')} style={styles.footerImage} /> */}
+             <Image source={require('../assets/settings.png')} style={styles.footerImage}/> 
             <Text style={styles.footerTabs}>Settings</Text>
           </View>
         </TouchableOpacity>
@@ -52,13 +54,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     backgroundColor: '#fff',
-    paddingVertical: 10,
+    paddingVertical: 2,
   },
-  footerImage: {
-    width: 30,
-    height: 30,
-    marginBottom: 5,
-  },
+ 
+  
   footerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
@@ -70,5 +69,9 @@ const styles = StyleSheet.create({
   },
   footerTabs:{
     color:'#b0afad'
+  },
+  footerImage:{
+    width:24,
+    height:24
   }
 });
